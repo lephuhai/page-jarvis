@@ -2,6 +2,8 @@
  * Created by Machine on 20-Mar-17.
  */
 
+'use strict'
+
 const Config = require('../config')
 const FB = require('../connectors/facebook')
 const Wit = require('node-wit').Wit

@@ -2,6 +2,8 @@
  * Created by Machine on 20-Mar-17.
  */
 
+'use strict'
+
 const request = require('request')
 const Config = require('../config')
 
