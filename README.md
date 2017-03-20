@@ -31,7 +31,7 @@ Help me save job :LOL
 * Bước 2: Cấu hình **WIT_TOKEN**, **FB_PAGE_TOKEN**, **FB_VERIFY_TOKEN** & **FB_APP_SECRET** trong file `./config.js` 
 và deploy code lên server
 
-* Bước 3: Verify `Webhooks` trên app của facebook
+* Bước 3: Verify `Webhooks` trên app của facebook (Chọn 2 subscription fields: `messages`, `messaging_postbacks`)
 
 * Bước 4: Thiết kế `NLU` & `NLP` cho [WIT](https://wit.ai/) application.
 
