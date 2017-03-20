@@ -48,14 +48,15 @@ app.get('/', function(req, res) {
 // for facebook to verify
 app.get('/webhooks', function (req, res) {
   console.log(`* Hub mode: ${req.query['hub.mode']}
-               * Hub verify token: ${req.query['hub.verify_token']}
-               * Server verify token: ${Config.FB_VERIFY_TOKEN}`)
+  * Hub verify token: ${req.query['hub.verify_token']}
+  * Server verify token: ${Config.FB_VERIFY_TOKEN}`)
   if (req.query['hub.mode'] === 'subscribe' && req.query['hub.verify_token'] === Config.FB_VERIFY_TOKEN) {
     console.log(`Hub Challenge: ${req.query['hub.challenge']}`)
     res.send(req.query['hub.challenge'])
+  } else {
+    res.sendStatus(400)
+    res.send('Error, wrong token')
   }
-  res.sendStatus(400)
-  res.send('Error, wrong token')
 })
 
 // to send message to facebook

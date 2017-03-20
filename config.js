@@ -20,13 +20,14 @@ if (!FB_APP_SECRET) {
   throw new Error('Missing FB_APP_SECRET')
 }
 
-let FB_VERIFY_TOKEN = ''
+let FB_VERIFY_TOKEN = 'tell_to_you_is_social'
+console.log(`/webhooks will accept the Verify Token "${FB_VERIFY_TOKEN}"`)
 
-crypto.randomBytes(8, function (err, buff) {
-  if (err) throw err
-  FB_VERIFY_TOKEN = buff.toString('hex')
-  console.log(`/webhooks will accept the Verify Token "${FB_VERIFY_TOKEN}"`)
-})
+// crypto.randomBytes(8, function (err, buff) {
+//   if (err) throw err
+//   FB_VERIFY_TOKEN = buff.toString('hex')
+//   console.log(`/webhooks will accept the Verify Token "${FB_VERIFY_TOKEN}"`)
+// })
 
 module.exports = {
   WIT_TOKEN: WIT_TOKEN,
