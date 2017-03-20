@@ -52,7 +52,7 @@ const firstEntityValue = function (entities, entity) {
 }
 
 const actions = {
-  send({sessionId}, {text}) {
+  send(sessionId, text) {
     // Our bot has something to say!
     // Let's retrieve the Facebook user whose session belogs to
     const recipientId = sessions[sessionId].fbid
