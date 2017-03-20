@@ -9,6 +9,36 @@ const FB = require('../connectors/facebook')
 const Wit = require('node-wit').Wit
 const log = require('node-wit').log
 const request = require('request')
+const fetch = require('node-fetch')
+
+let sessions = {}
+
+// ----------------------------------------------------------------------------
+// Messenger API specific code
+
+// See the Send API reference
+// https://developers.facebook.com/docs/messenger-platform/send-api-reference
+const fbMessage = function(id, text) {
+  const body = JSON.stringify({
+    recipient: {id},
+    message: {text}
+  })
+  const qs = 'access_token' + encodeURIComponent(Config.FB_PAGE_TOKEN)
+  return fetch('https://graph.facebook.com/me/messages?' + qs, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body
+  }).then(function (rsp) {
+    return rsp.json()
+  }).then(function (json) {
+    if (json.error && json.error.message) {
+      throw new Error(json.error.message)
+    }
+    return json
+  })
+}
 
 const firstEntityValue = function (entities, entity) {
   let val = entities && entities[entity] &&
@@ -22,6 +52,31 @@ const firstEntityValue = function (entities, entity) {
 }
 
 const actions = {
+  send({sessionId}, {text}) {
+    // Our bot has something to say!
+    // Let's retrieve the Facebook user whose session belogs to
+    const recipientId = sessions[sessionId].fbid
+    if (recipientId) {
+      // We found our recipient!
+      // Let's forward our bot response to her.
+      // We return a promise to left our bot know when we're done sending
+      return fbMessage(recipientId, text)
+        .then(function () {
+          return null
+        }).catch(function(err) {
+          console.error(
+            'Oops! An error occurred while forwarding the response to',
+            recipientId,
+            ':',
+            err.stack || err
+          );
+        })
+    } else {
+      console.error('Oops! Couldn\'t find user for session:', sessionId);
+      // Giving the wheel back to our bot
+      return Promise.resolve()
+    }
+  },
   say (sessionId, context, message, cb) {
     // Bot testing mode, run cb() and return
     if (require.main === module) {
