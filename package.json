@@ -1,0 +1,27 @@
+{
+  "name": "jarvis",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@vietworm/jarvis"
+  },
+  "keywords": [
+    "jarvis",
+    "100dayproject",
+    "bot"
+  ],
+  "author": "Machine",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "node-fetch": "^1.6.3",
+    "node-wit": "^4.2.0",
+    "request": "^2.81.0"
+  }
+}
