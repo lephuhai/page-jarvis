@@ -102,11 +102,15 @@ const actions = {
 // SETUP THE WIT.AI SERVICE
 let getWit = function () {
   console.log('GRABBING WIT')
-  return new Wit(Config.WIT_TOKEN, actions)
+  return new Wit({
+    accessToken: Config.WIT_TOKEN,
+    actions,
+    logger: new log.Logger(log.INFO)
+  })
 }
 
 module.exports = {
-  getWit: getWit,
+  getWit: getWit
 }
 
 // BOT TESTING MODE
