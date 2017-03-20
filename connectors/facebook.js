@@ -9,7 +9,7 @@ const Config = require('../config')
 
 // SETUP A REQUEST TO FACEBOOK SERVER
 const newRequest = request.defaults({
-  uri: 'https://graph.facebook.com/v2.6/me/messages',
+  uri: 'https://graph.facebook.com/me/messages',
   method: 'POST',
   json: true,
   qs: {

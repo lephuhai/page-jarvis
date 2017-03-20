@@ -35,3 +35,14 @@ và deploy code lên server
 
 * Bước 4: Thiết kế `NLU` & `NLP` cho [WIT](https://wit.ai/) application.
 
+### Chú ý:
+
++ Trong quá trình cấu hình có thể gặp lỗi page không response tin nhắn lại cho người dùng khi người dùng gửi tin nhắn `( Cannot message users who are not admins, developers or testers of the app until pages_messaging permission is reviewed and the app is live.)`.
+ Lúc này cần thiết lập app có quyền `pages_messaging`.
+ 
+ Thiết lập Permission `pages_messaging` tại đây: `https://developers.facebook.com/apps/APP_ID/review-status/`
+ 
+ 
+
+
+
