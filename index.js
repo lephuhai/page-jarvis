@@ -9,7 +9,8 @@ let express= require('express'),
   request = require('request'),
   Config  = require('./config'),
   FB = require('./connectors/facebook'),
-  crypto = require('crypto')
+  crypto = require('crypto'),
+  Bot = require('./bot')
 
 const verifyRequestSignature = function (req, res, buf) {
   let signature = req.headers['x-hub-signature']
