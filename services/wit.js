@@ -48,15 +48,15 @@ const actions = {
    *
    * Send is special action
    */
-  send({sessionId}, {text}) {
+  send(response, request) {
     // Our bot has something to say!
     // Let's retrieve the Facebook user whose session belogs to
-    const recipientId = sessions[sessionId].fbid
+    const recipientId = sessions[response.sessionId].fbid
     if (recipientId) {
       // We found our recipient!
       // Let's forward our bot response to her.
       // We return a promise to left our bot know when we're done sending
-      return fbMessage(recipientId, text)
+      return fbMessage(recipientId, request.text)
         .then(function () {
           return null
         }).catch(function (err) {
@@ -68,7 +68,7 @@ const actions = {
           );
         })
     } else {
-      console.error('Oops! Couldn\'t find user for session:', sessionId);
+      console.error('Oops! Couldn\'t find user for session:', response.sessionId);
       // Giving the wheel back to our bot
       return Promise.resolve()
     }
