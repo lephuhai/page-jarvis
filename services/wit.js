@@ -89,7 +89,7 @@ const actions = {
     let context = ctx.context,
       entities = ctx.entities
     return new Promise(function(resolve, reject) {
-      ctx.forecast = 'nắng lắm'
+      context.forecast = 'nắng lắm'
       return resolve(context)
     })
   }
