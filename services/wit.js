@@ -18,7 +18,7 @@ let sessions = {}
 
 // See the Send API reference
 // https://developers.facebook.com/docs/messenger-platform/send-api-reference
-const fbMessage = function(id, text) {
+const fbMessage = function (id, text) {
   const body = JSON.stringify({
     recipient: {id},
     message: {text}
@@ -52,7 +52,7 @@ const actions = {
       return fbMessage(recipientId, text)
         .then(function () {
           return null
-        }).catch(function(err) {
+        }).catch(function (err) {
           console.error(
             'Oops! An error occurred while forwarding the response to',
             recipientId,

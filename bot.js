@@ -47,25 +47,21 @@ let read = function (sender, message, reply) {
     wit.runActions(
       sessionId, // the user's current session by id
       message, // the user's message
-      sessions[sessionId].context, // the user's session state
-      function (error, context) {
-        if (error) {
-          console.log('oops!', error)
-        } else {
-          // Wit.ai run all the actions
-          // Now it needs more messages
-          console.log('Waiting for further messages')
-          // Based on the session state, you might want to reset the session
-          // Example:
-          // if (context['done']) {
-          // 	delete sessions[sessionId]
-          // }
-
-          // Updating the user's current session state
-          sessions[sessionId].context = context
-        }
-      }
-    )
+      sessions[sessionId].context // the user's session state
+    ).then(function (context) {
+      // Our bot did everything it has to do.
+      // Now it's waiting for further messages to processed.
+      console.log('Waiting for next user message\n');
+      console.log('User context: ', context)
+      // Based on the session state, you might want to reset the session.
+      // This depends heavily on the business logic of your bot.
+      // Example:
+      // if (context['done']) {
+      //   delete sessions[sessionId];
+      // }
+    }).catch(function (err) {
+      console.error('Oops! Got an error from Wit:', err.stack || err)
+    })
   }
 }
 
