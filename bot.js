@@ -44,9 +44,12 @@ let read = function (sender, message, reply) {
     sessions[sessionId].context // the user's session state
   ).then(function (context) {
     console.log('Waiting for next user message\n');
-    if (context['done']) {
-      delete sessions[sessionId];
-    }
+    // if (context['done']) {
+    //   delete sessions[sessionId];
+    // }
+
+    // Updating the user's current session state
+    sessions[sessionId].context = context
   }).catch(function (err) {
     console.error('Oops! Got an error from Wit:', err.stack || err)
   })
