@@ -4,7 +4,6 @@
 
 'use strict'
 
-const Config = require('./config')
 const wit = require('./services/wit').getWit()
 
 // LETS SAVE USER SESSIONS
