@@ -84,6 +84,14 @@ const actions = {
   emOk(ctx) {
     console.log("emOk: ", JSON.stringify(ctx, null, 4))
     return Promise.resolve(ctx.context)
+  },
+  getForecast (ctx) {
+    let context = ctx.context,
+      entities = ctx.entities
+    return new Promise(function(resolve, reject) {
+      ctx.forecast = 'nắng lắm'
+      return resolve(context)
+    })
   }
 }
 
