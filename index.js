@@ -53,10 +53,9 @@ app.get('/webhooks', function (req, res) {
   * Server verify token: ${Config.FB_VERIFY_TOKEN}`)
   if (req.query['hub.mode'] === 'subscribe' && req.query['hub.verify_token'] === Config.FB_VERIFY_TOKEN) {
     console.log(`Hub Challenge: ${req.query['hub.challenge']}`)
-    res.send(req.query['hub.challenge'])
+    res.status(200).send(req.query['hub.challenge'])
   } else {
-    res.sendStatus(400)
-    res.send('Error, wrong token')
+    res.status(400).send('Error, wrong token')
   }
 })
 
