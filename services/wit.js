@@ -65,7 +65,14 @@ const actions = {
       // Giving the wheel back to our bot
       return Promise.resolve()
     }
-  }
+  },
+  firstGreeting(sessionId, context, text, entities) {
+    console.log(`Session ${sessionId} received ${text}`)
+    console.log(`The current context is ${JSON.stringify(context)}`)
+    console.log(`Wit extracted ${JSON.stringify(entities)}`)
+    return Promise.resolve(context)
+  },
+  logger: new log.Logger(log.DEBUG)
 }
 
 // SETUP THE WIT.AI SERVICE
