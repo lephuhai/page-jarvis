@@ -50,7 +50,7 @@ const actions = {
    */
   send(request, response) {
     return new Promise(function(resolve, reject) {
-      console.log('Middleware: ', JSON.stringify(response))
+      FB.newMessage(request.context._fbid_, response.text)
       return resolve()
     })
     // // Our bot has something to say!
