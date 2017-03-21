@@ -77,11 +77,13 @@ const actions = {
     //   return Promise.resolve()
     // }
   },
-  firstGreeting(sessionId, context, text, entities) {
-    console.log(`Session ${sessionId} received ${text}`)
-    console.log(`The current context is ${JSON.stringify(context)}`)
-    console.log(`Wit extracted ${JSON.stringify(entities)}`)
-    return Promise.resolve(context)
+  firstGreeting(ctx) {
+    console.log("firstGreeting: ", JSON.stringify(ctx, null, 4))
+    return Promise.resolve(ctx.context)
+  },
+  emOk(ctx) {
+    console.log("emOk: ", JSON.stringify(ctx, null, 4))
+    return Promise.resolve(ctx.context)
   }
 }
 
