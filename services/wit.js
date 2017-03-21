@@ -41,7 +41,14 @@ const fbMessage = function (id, text) {
 }
 
 const actions = {
-  send(sessionId, text) {
+  /**
+   * Send takes 2 parameters: request and response
+   * request: sessionId, context, text, entities
+   * response: text, quickreplies
+   *
+   * Send is special action
+   */
+  send({sessionId}, {text}) {
     // Our bot has something to say!
     // Let's retrieve the Facebook user whose session belogs to
     const recipientId = sessions[sessionId].fbid
@@ -71,8 +78,7 @@ const actions = {
     console.log(`The current context is ${JSON.stringify(context)}`)
     console.log(`Wit extracted ${JSON.stringify(entities)}`)
     return Promise.resolve(context)
-  },
-  logger: new log.Logger(log.DEBUG)
+  }
 }
 
 // SETUP THE WIT.AI SERVICE
