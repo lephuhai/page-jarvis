@@ -91,7 +91,7 @@ let getWit = function () {
   return new Wit({
     accessToken: Config.WIT_TOKEN,
     actions,
-    logger: new log.Logger(log.INFO)
+    logger: new log.Logger(log.DEBUG)
   })
 }
 
