@@ -3,7 +3,6 @@
  */
 
 'use strict';
-const crypto = require('crypto')
 
 const WIT_TOKEN = process.env.WIT_TOKEN || 'NCPO4KTAYQTDZMXQCDX6LUNOHTZK3PBN'
 if (!WIT_TOKEN) {
@@ -22,12 +21,6 @@ if (!FB_APP_SECRET) {
 
 let FB_VERIFY_TOKEN = 'tell_to_you_is_social'
 console.log(`/webhooks will accept the Verify Token "${FB_VERIFY_TOKEN}"`)
-
-// crypto.randomBytes(8, function (err, buff) {
-//   if (err) throw err
-//   FB_VERIFY_TOKEN = buff.toString('hex')
-//   console.log(`/webhooks will accept the Verify Token "${FB_VERIFY_TOKEN}"`)
-// })
 
 module.exports = {
   WIT_TOKEN: WIT_TOKEN,

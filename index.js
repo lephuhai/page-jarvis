@@ -32,7 +32,6 @@ const verifyRequestSignature = function (req, res, buf) {
   }
 }
 
-// Let's make a server!
 const app = express()
 app.set('port', (process.env.PORT) || 1337)
 
@@ -43,32 +42,24 @@ app.listen(app.get('port'), function () {
 })
 
 app.get('/', function(req, res) {
-  res.send('hello world! I"m Jarvis,')
+  res.send('I"m Jarvis owned by Machine,')
 })
 
 // for facebook to verify
 app.get('/webhooks', function (req, res) {
-  console.log(`* Hub mode: ${req.query['hub.mode']}
-  * Hub verify token: ${req.query['hub.verify_token']}
-  * Server verify token: ${Config.FB_VERIFY_TOKEN}`)
   if (req.query['hub.mode'] === 'subscribe' && req.query['hub.verify_token'] === Config.FB_VERIFY_TOKEN) {
-    console.log(`Hub Challenge: ${req.query['hub.challenge']}`)
     res.status(200).send(req.query['hub.challenge'])
   } else {
     res.status(400).send('Error, wrong token')
   }
 })
 
-// to send message to facebook
 app.post('/webhooks', function (req, res) {
   let entry = FB.getMessageEntry(req.body)
-  // IS THE ENTRY A VALID MESSAGE?
   if (entry && entry.message) {
     if (entry.message.attachments) {
-      // not smart enough for attachments yet
-      FB.newMessage(entry.sender.id, "That's interesting!")
+      FB.newMessage(entry.sender.id, "That's interesting! I can only process text message for now.")
     } else {
-      // send to bot for processing
       Bot.read(entry.sender.id, entry.message.text, function (sender, reply) {
         FB.newMessage(sender, reply)
       })

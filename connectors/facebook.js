@@ -5,7 +5,31 @@
 'use strict'
 
 const request = require('request')
+const fetch = require('node-fetch')
 const Config = require('../config')
+
+// Or using it, return a promise
+const fbMessage = function (id, text) {
+  const body = JSON.stringify({
+    recipient: {id},
+    message: {text}
+  })
+  const qs = 'access_token' + encodeURIComponent(Config.FB_PAGE_TOKEN)
+  return fetch('https://graph.facebook.com/me/messages?' + qs, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body
+  }).then(function (rsp) {
+    return rsp.json()
+  }).then(function (json) {
+    if (json.error && json.error.message) {
+      throw new Error(json.error.message)
+    }
+    return json
+  })
+}
 
 // SETUP A REQUEST TO FACEBOOK SERVER
 const newRequest = request.defaults({
