@@ -7,6 +7,7 @@
 const request = require('request')
 const fetch = require('node-fetch')
 const Config = require('../config')
+const slug = require('slug')
 
 const callSendAPI = function (messageData) {
   request({
@@ -63,9 +64,9 @@ const sendQuickReply = function (recipientId, payload) {
     text: payload.text,
     quick_replies: payload.quick_replies.map(function (item) {
       return {
-        'content_type': 'text',
-        'title': item,
-        'payload:': item
+        "content_type": "text",
+        "title": item,
+        "payload": slug(item, '_')
       }
     })
   }

@@ -23,6 +23,7 @@
     "express": "^4.15.2",
     "node-fetch": "^1.6.3",
     "node-wit": "^4.2.0",
-    "request": "^2.81.0"
+    "request": "^2.81.0",
+    "slug": "^0.9.1"
   }
 }
