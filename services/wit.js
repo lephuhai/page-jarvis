@@ -21,7 +21,24 @@ const actions = {
     return new Promise(function(resolve, reject) {
       let recipientId = request.context._fbid_
       if (recipientId) {
-        FB.newMessage(recipientId, response.text)
+        // FB.newMessage(recipientId, response.text)
+        FB.sendMessageType(recipientId, 'template', {
+          template_type: 'button',
+          text: 'The 100dayproject',
+          buttons: [{
+            type: 'web_url',
+            url: 'http://100dayproject.org',
+            title: 'Open Web Url'
+          }, {
+            type: 'postback',
+            title: 'Trigger Postback',
+            payload: 'DEV_DEFINED_PAYLOAD'
+          }, {
+            type: 'phone_number',
+            title: 'Call Phone Number',
+            payload: "0963296583"
+          }]
+        })
       } else {
         console.error("Oops! Couldn't find user for session:", request.sessionId)
       }

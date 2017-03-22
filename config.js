@@ -4,6 +4,7 @@
 
 'use strict';
 
+const SERVER_URL = 'http://100dayproject.org'
 const WIT_TOKEN = process.env.WIT_TOKEN || 'NCPO4KTAYQTDZMXQCDX6LUNOHTZK3PBN'
 if (!WIT_TOKEN) {
   throw new Error('Missing WIT_TOKEN. Go to https://wit.ai/docs/quickstart to get one.')
@@ -26,5 +27,6 @@ module.exports = {
   WIT_TOKEN: WIT_TOKEN,
   FB_PAGE_TOKEN: FB_PAGE_TOKEN,
   FB_VERIFY_TOKEN: FB_VERIFY_TOKEN,
-  FB_APP_SECRET: FB_APP_SECRET
+  FB_APP_SECRET: FB_APP_SECRET,
+  SERVER_URL
 }

@@ -4,10 +4,10 @@
 
 'use strict'
 
-let express= require('express'),
+let express = require('express'),
   bodyParser = require('body-parser'),
   request = require('request'),
-  Config  = require('./config'),
+  Config = require('./config'),
   FB = require('./connectors/facebook'),
   crypto = require('crypto'),
   Bot = require('./bot')
@@ -41,7 +41,7 @@ app.listen(app.get('port'), function () {
   console.log('Running on port', app.get('port'))
 })
 
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
   res.send('I"m Jarvis owned by Machine,')
 })
 
@@ -55,13 +55,20 @@ app.get('/webhooks', function (req, res) {
 })
 
 app.post('/webhooks', function (req, res) {
-  let entry = FB.getMessageEntry(req.body)
-  if (entry && entry.message) {
-    if (entry.message.attachments) {
-      FB.newMessage(entry.sender.id, "That's interesting! I can only process text message for now.")
-    } else {
-      Bot.read(entry.sender.id, entry.message.text)
-    }
+  let data = req.body
+  // Make sure this is a page subscription
+  if (data.object === 'page') {
+    data.entry.forEach(function (pageEntry) {
+      pageEntry.messaging.forEach(function (messagingEvent) {
+        if (messagingEvent.message) {
+          if (entry.message.attachments) {
+            FB.newMessage(entry.sender.id, "That's interesting! I can only process text message for now.")
+          } else {
+            Bot.read(entry.sender.id, entry.message.text)
+          }
+        }
+      })
+    })
+    res.sendStatus(200)
   }
-  res.sendStatus(200)
 })
