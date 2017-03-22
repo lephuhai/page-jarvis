@@ -21,7 +21,7 @@ const actions = {
     return new Promise(function(resolve, reject) {
       let recipientId = request.context._fbid_
       if (recipientId) {
-        if (response.quickreplies.length) {
+        if (response.quickreplies && response.quickreplies.length > 0) {
           FB.sendQuickReply(recipientId, {
             text: response.text,
             quick_replies: response.quickreplies
