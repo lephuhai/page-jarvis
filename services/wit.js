@@ -29,10 +29,11 @@ const actions = {
             })).then(function () {
               FB.sendTypingOff(recipientId)
             })
+          } else {
+            Promise.resolve(FB.sendTextMessage(recipientId, response.text)).then(function () {
+              FB.sendTypingOff(recipientId)
+            })
           }
-          Promise.resolve(FB.sendTextMessage(recipientId, response.text)).then(function () {
-            FB.sendTypingOff(recipientId)
-          })
         })
       } else {
         console.error("Oops! Couldn't find user for session:", request.sessionId)
