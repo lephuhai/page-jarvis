@@ -330,5 +330,7 @@ module.exports = {
   sendMessageTemplate: sendMessageTemplate,
   sendMessageType: sendMessageType,
   sendTextMessage: sendTextMessage,
-  sendQuickReply: sendQuickReply
+  sendQuickReply: sendQuickReply,
+  sendTypingOn: sendTypingOn,
+  sendTypingOff: sendTypingOff
 }
