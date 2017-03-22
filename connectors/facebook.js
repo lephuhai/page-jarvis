@@ -30,20 +30,16 @@ const callSendAPI = function (messageData) {
 }
 
 const sendTextMessage = function (recipientId, messageText) {
-  return new Promise(function (resolve, reject) {
-    let messageData = {
-      recipient: {
-        id: recipientId
-      },
-      message: {
-        text: messageText,
-        metadata: 'DEV_HACKING'
-      }
+  let messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      text: messageText,
+      metadata: 'DEV_HACKING'
     }
-    callSendAPI(messageData).then(function () {
-      return resolve()
-    })
-  })
+  }
+  callSendAPI(messageData)
 }
 
 const sendMessageType = function (recipientId, type, payload) {
@@ -71,19 +67,19 @@ const sendQuickReply = function (recipientId) {
       text: "What's your favorite movie genre?",
       quick_replies: [
         {
-          "content_type": "text",
-          "title": "Action",
-          "payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_ACTION"
+          "content_type":"text",
+          "title":"Action",
+          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_ACTION"
         },
         {
-          "content_type": "text",
-          "title": "Comedy",
-          "payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_COMEDY"
+          "content_type":"text",
+          "title":"Comedy",
+          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_COMEDY"
         },
         {
-          "content_type": "text",
-          "title": "Drama",
-          "payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_DRAMA"
+          "content_type":"text",
+          "title":"Drama",
+          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_DRAMA"
         }
       ]
     }
@@ -91,7 +87,7 @@ const sendQuickReply = function (recipientId) {
   callSendAPI(messageData)
 }
 
-const sendReadReceipt = function (recipientId) {
+const sendReadReceipt = function(recipientId) {
   let messageData = {
     recipient: {
       id: recipientId
@@ -101,34 +97,26 @@ const sendReadReceipt = function (recipientId) {
   callSendAPI(messageData)
 }
 
-const sendTypingOn = function (recipientId) {
-  return new Promise(function (resolve, reject) {
-    let messageData = {
-      recipient: {
-        id: recipientId
-      },
-      sender_action: 'typing_on'
-    };
+const sendTypingOn = function(recipientId) {
+  let messageData = {
+    recipient: {
+      id: recipientId
+    },
+    sender_action: 'typing_on'
+  };
 
-    callSendAPI(messageData).then(function () {
-      return resolve()
-    })
-  })
+  callSendAPI(messageData);
 }
 
-const sendTypingOff = function (recipientId) {
-  return new Promise(function (resolve, reject) {
-    let messageData = {
-      recipient: {
-        id: recipientId
-      },
-      sender_action: 'typing_off'
-    };
+const sendTypingOff = function(recipientId) {
+  let messageData = {
+    recipient: {
+      id: recipientId
+    },
+    sender_action: 'typing_off'
+  };
 
-    callSendAPI(messageData).then(function () {
-      return resolve()
-    })
-  })
+  callSendAPI(messageData);
 }
 
 const sendMessageTemplate = function (event) {
@@ -277,7 +265,7 @@ const sendMessageTemplate = function (event) {
             quantity: 1,
             price: 99.99,
             currency: "USD",
-            image_url: Config.SERVER_URL + "/assets/gearvrsq.png"
+            image_url:  Config.SERVER_URL + "/assets/gearvrsq.png"
           }],
           address: {
             street_1: "1 Hacker Way",
