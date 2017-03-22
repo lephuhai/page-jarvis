@@ -58,36 +58,17 @@ const sendMessageType = function (recipientId, type, payload) {
   callSendAPI(messageData)
 }
 
-const sendQuickReply = function (recipientId) {
+const sendQuickReply = function (recipientId, message) {
   let messageData = {
     recipient: {
       id: recipientId
     },
-    message: {
-      text: "What's your favorite movie genre?",
-      quick_replies: [
-        {
-          "content_type":"text",
-          "title":"Action",
-          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_ACTION"
-        },
-        {
-          "content_type":"text",
-          "title":"Comedy",
-          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_COMEDY"
-        },
-        {
-          "content_type":"text",
-          "title":"Drama",
-          "payload":"DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_DRAMA"
-        }
-      ]
-    }
+    message: message
   }
   callSendAPI(messageData)
 }
 
-const sendReadReceipt = function(recipientId) {
+const sendReadReceipt = function (recipientId) {
   let messageData = {
     recipient: {
       id: recipientId
@@ -97,7 +78,7 @@ const sendReadReceipt = function(recipientId) {
   callSendAPI(messageData)
 }
 
-const sendTypingOn = function(recipientId) {
+const sendTypingOn = function (recipientId) {
   let messageData = {
     recipient: {
       id: recipientId
@@ -108,7 +89,7 @@ const sendTypingOn = function(recipientId) {
   callSendAPI(messageData);
 }
 
-const sendTypingOff = function(recipientId) {
+const sendTypingOff = function (recipientId) {
   let messageData = {
     recipient: {
       id: recipientId
@@ -265,7 +246,7 @@ const sendMessageTemplate = function (event) {
             quantity: 1,
             price: 99.99,
             currency: "USD",
-            image_url:  Config.SERVER_URL + "/assets/gearvrsq.png"
+            image_url: Config.SERVER_URL + "/assets/gearvrsq.png"
           }],
           address: {
             street_1: "1 Hacker Way",
@@ -292,7 +273,26 @@ const sendMessageTemplate = function (event) {
         break;
 
       case 'quick reply':
-        sendQuickReply(senderID)
+        sendQuickReply(senderID, {
+          text: "What's your favorite movie genre?",
+          quick_replies: [
+            {
+              "content_type": "text",
+              "title": "Action",
+              "payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_ACTION"
+            },
+            {
+              "content_type": "text",
+              "title": "Comedy",
+              "payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_COMEDY"
+            },
+            {
+              "content_type": "text",
+              "title": "Drama",
+              "payload": "DEVELOPER_DEFINED_PAYLOAD_FOR_PICKING_DRAMA"
+            }
+          ]
+        })
         break;
 
       case 'read receipt':
