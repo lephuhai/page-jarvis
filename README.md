@@ -1,6 +1,10 @@
 # page-jarvis
 Jarvis facebook page
 
+WIT có thể giúp bạn phân tích một thông điệp thành dữ liệu có cấu trúc hoặc dự đoán hành động tiếp theo mà `Jarvis` nên thực hiện.
+
+![alt text](https://wit.ai/docs/images/recipes/overview-db2bc1ee.png "Overiew of 1) Understand 2) Converse")
+
 ## Tổng quan
 
 Tạo kênh hỗ trợ tự động trên facebook page.
