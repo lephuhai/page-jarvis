@@ -61,7 +61,7 @@ const sendMessageType = function (recipientId, type, payload) {
 const sendQuickReply = function (recipientId, payload) {
   let message = {
     text: payload.text,
-    quick_replies: payload.map(function (item) {
+    quick_replies: payload.quick_replies.map(function (item) {
       return {
         'content_type': 'text',
         'title': item,
