@@ -22,6 +22,7 @@ const actions = {
       let recipientId = request.context._fbid_
       if (recipientId) {
         FB.sendTextMessage(recipientId, response.text)
+        FB.sendQuickReply(recipientId)
       } else {
         console.error("Oops! Couldn't find user for session:", request.sessionId)
       }

@@ -329,5 +329,6 @@ const sendMessageTemplate = function (event) {
 module.exports = {
   sendMessageTemplate: sendMessageTemplate,
   sendMessageType: sendMessageType,
-  sendTextMessage: sendTextMessage
+  sendTextMessage: sendTextMessage,
+  sendQuickReply: sendQuickReply
 }
