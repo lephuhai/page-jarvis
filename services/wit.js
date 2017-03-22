@@ -21,10 +21,11 @@ const actions = {
     return new Promise(function(resolve, reject) {
       let recipientId = request.context._fbid_
       if (recipientId) {
-        FB.sendTypingOn(recipientId)
-        FB.sendTextMessage(recipientId, response.text)
-        FB.sendTypingOff(recipientId)
-        // FB.sendQuickReply(recipientId)
+        FB.sendTypingOn(recipientId).then(function () {
+          FB.sendTextMessage(recipientId, response.text).then(function () {
+            FB.sendTypingOff(recipientId)
+          })
+        })
       } else {
         console.error("Oops! Couldn't find user for session:", request.sessionId)
       }
