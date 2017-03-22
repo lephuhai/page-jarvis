@@ -58,7 +58,18 @@ const sendMessageType = function (recipientId, type, payload) {
   callSendAPI(messageData)
 }
 
-const sendQuickReply = function (recipientId, message) {
+const sendQuickReply = function (recipientId, payload) {
+  let message = {
+    text: payload.text,
+    quick_replies: payload.map(function (item) {
+      return {
+        'content_type': 'text',
+        'title': item,
+        'payload:': item
+      }
+    })
+  }
+
   let messageData = {
     recipient: {
       id: recipientId
