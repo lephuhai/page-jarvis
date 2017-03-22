@@ -61,10 +61,10 @@ app.post('/webhooks', function (req, res) {
     data.entry.forEach(function (pageEntry) {
       pageEntry.messaging.forEach(function (messagingEvent) {
         if (messagingEvent.message) {
-          if (entry.message.attachments) {
-            FB.newMessage(entry.sender.id, "That's interesting! I can only process text message for now.")
+          if (messagingEvent.message.attachments) {
+            FB.newMessage(messagingEvent.sender.id, "That's interesting! I can only process text message for now.")
           } else {
-            Bot.read(entry.sender.id, entry.message.text)
+            Bot.read(messagingEvent.sender.id, messagingEvent.message.text)
           }
         }
       })
