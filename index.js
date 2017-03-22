@@ -62,7 +62,7 @@ app.post('/webhooks', function (req, res) {
       pageEntry.messaging.forEach(function (messagingEvent) {
         if (messagingEvent.message) {
           if (messagingEvent.message.attachments) {
-            FB.newMessage(messagingEvent.sender.id, "That's interesting! I can only process text message for now.")
+            FB.sendTextMessage(messagingEvent.sender.id, "That's interesting! I can only process text message for now.")
           } else {
             Bot.read(messagingEvent.sender.id, messagingEvent.message.text)
           }

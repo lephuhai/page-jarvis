@@ -21,7 +21,7 @@ const actions = {
     return new Promise(function(resolve, reject) {
       let recipientId = request.context._fbid_
       if (recipientId) {
-        // FB.newMessage(recipientId, response.text)
+        // FB.sendTextMessage(recipientId, response.text)
         FB.sendMessageType(recipientId, 'template', {
           template_type: 'button',
           text: 'The 100dayproject',

@@ -8,29 +8,6 @@ const request = require('request')
 const fetch = require('node-fetch')
 const Config = require('../config')
 
-// Or using it, return a promise
-const fbMessage = function (id, text) {
-  const body = JSON.stringify({
-    recipient: {id},
-    message: {text}
-  })
-  const qs = 'access_token' + encodeURIComponent(Config.FB_PAGE_TOKEN)
-  return fetch('https://graph.facebook.com/me/messages?' + qs, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body
-  }).then(function (rsp) {
-    return rsp.json()
-  }).then(function (json) {
-    if (json.error && json.error.message) {
-      throw new Error(json.error.message)
-    }
-    return json
-  })
-}
-
 const callSendAPI = function (messageData) {
   request({
     uri: 'https://graph.facebook.com/v2.6/me/messages',
@@ -42,11 +19,9 @@ const callSendAPI = function (messageData) {
       let recipientId = body.recipient_id
       let messageId = body.message_id
       if (messageId) {
-        console.log("Successfully sent message with id %s to recipient %s",
-          messageId, recipientId)
+        console.log("Successfully sent message with id %s to recipient %s", messageId, recipientId)
       } else {
-        console.log("Successfully called Send API for recipient %s",
-          recipientId)
+        console.log("Successfully called Send API for recipient %s", recipientId)
       }
     } else {
       console.error("Failed calling Send API", response.statusCode, response.statusMessage, body.error)
@@ -133,10 +108,6 @@ const sendTypingOn = function(recipientId) {
   callSendAPI(messageData);
 }
 
-/*
- * Turn typing indicator off
- *
- */
 const sendTypingOff = function(recipientId) {
   let messageData = {
     recipient: {
@@ -148,48 +119,7 @@ const sendTypingOff = function(recipientId) {
   callSendAPI(messageData);
 }
 
-// SETUP A REQUEST TO FACEBOOK SERVER
-const newRequest = request.defaults({
-  uri: 'https://graph.facebook.com/me/messages',
-  method: 'POST',
-  json: true,
-  qs: {
-    access_token: Config.FB_PAGE_TOKEN
-  },
-  headers: {
-    'Content-Type': 'application/json'
-  }
-})
-
-const newMessage = function (recipientId, msg, atts, cb) {
-  let message = {}
-  let opts = {
-    form: {
-      recipient: {
-        id: recipientId
-      }
-    }
-  }
-  if (atts) {
-    message.attachment = {
-      'type': 'image',
-      'payload': {
-        'url': msg
-      }
-    }
-  } else {
-    message.text = msg
-  }
-  opts.form.message = message
-
-  newRequest(opts, function (err, resp, data) {
-    if (cb) {
-      cb(err || data.error && data.error.message, data)
-    }
-  })
-}
-
-const receivedMessage = function (event) {
+const sendMessageTemplate = function (event) {
   let senderID = event.sender.id;
   let recipientID = event.recipient.id;
   let timeOfMessage = event.timestamp;
@@ -397,8 +327,7 @@ const receivedMessage = function (event) {
 }
 
 module.exports = {
-  newRequest: newRequest,
-  newMessage: newMessage,
-  receivedMessage: receivedMessage,
-  sendMessageType: sendMessageType
+  sendMessageTemplate: sendMessageTemplate,
+  sendMessageType: sendMessageType,
+  sendTextMessage: sendTextMessage
 }
