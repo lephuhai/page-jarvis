@@ -28,6 +28,10 @@ Help me save job :LOL
 
 2. Cấu hình https trên server (sử dụng: [Letsencrypt](https://letsencrypt.org/))
 
+
+ > Khi thực hiện xác thực webhooks của facebook thì yêu cầu phải có live server và chạy https. Để thuận tiện việc phát triển, các bạn có thể sử
+ dụng [ngrok](https://ngrok.com/) :fu: `(I want to expose a local server behind a NAT or firewall to the internet.)`
+
 ## Cài đặt
 
 * Bước 1: Tạo facebook app tại địa chỉ [https://developers.facebook.com/apps](https://developers.facebook.com/apps)
@@ -39,14 +43,13 @@ và deploy code lên server
 
 * Bước 4: Thiết kế `NLU` & `NLP` cho [WIT](https://wit.ai/) application.
 
+## Guideline facebook messenger template
+
+Tham khảo tại đây: [https://developers.facebook.com/docs/messenger-platform/send-api-reference](https://developers.facebook.com/docs/messenger-platform/send-api-reference)
+
 ### Chú ý:
 
 + Trong quá trình cấu hình có thể gặp lỗi page không response tin nhắn lại cho người dùng khi người dùng gửi tin nhắn `( Cannot message users who are not admins, developers or testers of the app until pages_messaging permission is reviewed and the app is live.)`.
  Lúc này cần thiết lập app có quyền `pages_messaging`.
  
  Thiết lập Permission `pages_messaging` tại đây: `https://developers.facebook.com/apps/APP_ID/review-status/`
- 
- 
-
-
-
