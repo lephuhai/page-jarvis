@@ -55,15 +55,20 @@ const sendMessageType = function (recipientId, type, payload) {
       }
     }
   }
-  messageData.message.attachment.payload.template_type = 'button'
-  messageData.message.attachment.payload.text = payload.text
-  messageData.message.attachment.payload.buttons = payload.quick_replies.map(function (item) {
-    return {
-      type: 'postback',
-      title: item,
-      payload: slug(item, '_')
-    }
-  })
+  switch (type) {
+    case 'button':
+      messageData.message.attachment.payload.template_type = 'button'
+      messageData.message.attachment.payload.text = payload.text
+      messageData.message.attachment.payload.buttons = payload.quick_replies.map(function (item) {
+        return {
+          type: 'postback',
+          title: item,
+          payload: slug(item, '_')
+        }
+      })
+    break
+  }
+
 
   callSendAPI(messageData)
 }
