@@ -51,21 +51,19 @@ const sendMessageType = function (recipientId, type, payload) {
     message: {
       attachment: {
         type: 'template',
-        payload: payload
+        payload: {}
       }
     }
   }
-  if (payload.quick_replies && payload.quick_replies.length > 0) {
-    messageData.message.attachment.payload.template_type = 'button'
-    messageData.message.attachment.payload.text = payload.text
-    messageData.message.attachment.payload.buttons = payload.quick_replies.map(function (item) {
-      return {
-        type: 'postback',
-        title: item,
-        payload: slug(item, '_')
-      }
-    })
-  }
+  messageData.message.attachment.payload.template_type = 'button'
+  messageData.message.attachment.payload.text = payload.text
+  messageData.message.attachment.payload.buttons = payload.quick_replies.map(function (item) {
+    return {
+      type: 'postback',
+      title: item,
+      payload: slug(item, '_')
+    }
+  })
 
   callSendAPI(messageData)
 }
