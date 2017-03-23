@@ -59,3 +59,5 @@ Tham khảo tại đây: [https://developers.facebook.com/docs/messenger-platfor
  Lúc này cần thiết lập app có quyền `pages_messaging`.
  
  Thiết lập Permission `pages_messaging` tại đây: `https://developers.facebook.com/apps/APP_ID/review-status/`
+ 
+![alt text](https://raw.githubusercontent.com/Vietworm/page-jarvis/master/pages_messaging.png "pages_messaging Permission Success review")
