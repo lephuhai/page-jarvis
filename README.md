@@ -31,6 +31,12 @@ Help me save job :LOL
 
  > Khi thực hiện xác thực webhooks của facebook thì yêu cầu phải có live server và chạy https. Để thuận tiện việc phát triển, các bạn có thể sử
  dụng [ngrok](https://ngrok.com/) :fu: `(I want to expose a local server behind a NAT or firewall to the internet.)`
+ 
+ Ví dụ: Khi tại localhost của bạn đã expose PORT 2003 thì gõ lệnh:
+ 
+ ```bash
+ ./ngrok http 2003
+```
 
 ## Cài đặt
 
