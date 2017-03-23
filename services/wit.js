@@ -22,7 +22,7 @@ const actions = {
       let recipientId = request.context._fbid_
       if (recipientId) {
         if (response.quickreplies && response.quickreplies.length > 0) {
-          FB.sendMessageType(recipientId, 'button', {
+          FB.sendQuickReply(recipientId, {
             text: response.text,
             quick_replies: response.quickreplies
           })
